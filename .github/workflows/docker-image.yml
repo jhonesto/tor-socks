@@ -1,8 +1,7 @@
 name: Docker Image CI
 
 on:
-# Triggers the workflow At 12:00am on Wednesday
-schedule:
+schedule: # Triggers the workflow At 12:00am on Wednesday 
 -cron:"0 0 * * Wed"
 
 jobs:
