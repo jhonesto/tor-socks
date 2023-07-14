@@ -14,9 +14,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        export CWD = pwd
-        cp $CWD/LICENSE $CWD/build
-        cd $CWD/build
+        cp ${{ github.workspace }}/LICENSE ${{ github.workspace }}/build
+        cd ${{ github.workspace }}/build
         docker build . -t jhonesto/tor-socks
     
     - name: Push to dockerhub registry
