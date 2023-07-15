@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  schedule: 
+    - cron: "0 3 * * 1-6"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cp ${{ github.workspace }}/LICENSE ${{ github.workspace }}/build
+        cd ${{ github.workspace }}/build
+        docker build . -t jhonesto/tor-socks
+    
+    - name: Push to dockerhub registry
+      run: |
+        echo "${{ secrets.DOCKERHUB }}" | docker login -u jhonesto --password-stdin 
+        docker push jhonesto/tor-socks:latest
