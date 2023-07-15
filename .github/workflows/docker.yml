@@ -20,5 +20,5 @@ jobs:
     
     - name: Push to dockerhub registry
       run: |
-        echo "${{ secrets.DOCKERHUB }}" | login -u jhonesto --password-stdin 
+        echo "${{ secrets.DOCKERHUB }}" | docker login -u jhonesto --password-stdin 
         docker push jhonesto/tor-socks:latest
